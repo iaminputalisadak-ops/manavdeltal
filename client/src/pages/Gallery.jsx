@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import './Gallery.css'
+import { motion, AnimatePresence } from 'framer-motion'
+import Container from '../components/layout/Container'
 
 const FILTERS = ['All', 'Clinic', 'Team', 'Treatments']
 
@@ -19,44 +20,63 @@ export default function Gallery() {
   const filtered = filter === 'All' ? images : images.filter((i) => i.category === filter)
 
   return (
-    <main className="gallery-page">
-      <div className="container">
-        <h1 className="section-title">Gallery</h1>
-        <p className="section-subtitle">Our clinic, team, and care in focus.</p>
+    <main className="bg-neutral-50 py-24">
+      <Container>
+        <div className="text-center mb-12">
+          <p className="text-body-sm font-semibold uppercase tracking-[0.2em] text-primary-600 mb-3">Gallery</p>
+          <h1 className="text-h2 text-neutral-900 mb-4">Our Clinic in Focus</h1>
+        </div>
 
-        <div className="gallery-filters">
+        <div className="flex flex-wrap justify-center gap-2 mb-10">
           {FILTERS.map((f) => (
             <button
               key={f}
               type="button"
-              className={`gallery-filter-btn ${filter === f ? 'active' : ''}`}
               onClick={() => setFilter(f)}
+              className={`rounded-full px-4 py-2 text-body-sm font-semibold transition-colors ${
+                filter === f ? 'bg-primary-600 text-white' : 'border-2 border-primary-600 text-primary-600 hover:bg-primary-50'
+              }`}
             >
               {f}
             </button>
           ))}
         </div>
 
-        <div className="gallery-grid">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((img, i) => (
-            <button
+            <motion.button
               key={`${img.src}-${i}`}
               type="button"
-              className="gallery-item"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.05 }}
+              className="aspect-square overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-md transition-shadow"
               onClick={() => setLightbox(img)}
             >
-              <img src={img.src} alt={img.alt} loading="lazy" />
-            </button>
+              <img src={img.src} alt={img.alt} className="h-full w-full object-cover" loading="lazy" />
+            </motion.button>
           ))}
         </div>
-      </div>
+      </Container>
 
-      {lightbox && (
-        <div className="lightbox" onClick={() => setLightbox(null)} role="dialog" aria-modal="true">
-          <button type="button" className="lightbox-close" aria-label="Close">×</button>
-          <img src={lightbox.src} alt={lightbox.alt} onClick={(e) => e.stopPropagation()} />
-        </div>
-      )}
+      <AnimatePresence>
+        {lightbox && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
+            onClick={() => setLightbox(null)}
+          >
+            <img
+              src={lightbox.src}
+              alt={lightbox.alt}
+              className="max-h-[90vh] max-w-full rounded-lg object-contain"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   )
 }
