@@ -1,30 +1,66 @@
-# Manav Dental Clinic – Website
+# Manav Dental Clinic & Manavdeltal App
 
-Website for **Manav Dental Clinic**, Damak (5.0 ★ · 8 reviews).  
-Clean, responsive one-page site with hero, about, services, reviews, and contact.
+## 1. Static website (Manav Dental Clinic)
 
-## Contents
+- `index.html` – Main page
+- `styles.css` – Styling
+- `script.js` – Mobile menu
 
-- `index.html` – Main page structure
-- `styles.css` – Layout and styling
-- `script.js` – Mobile menu toggle
+**Run:** Open `index.html` in a browser, or `npx serve .` then visit the URL.
 
-## Run locally
+**Clinic:** [manavdental.com](https://manavdental.com) · MM5W+R62, Damak 57217 · 023-574973
 
-Open `index.html` in a browser, or use a simple server:
+---
+
+## 2. React app + PHP/MySQL backend
+
+- **Frontend:** `client/` – React (Vite) app
+- **Backend:** `api/` – PHP with MySQL
+
+### Prerequisites
+
+- Node.js 18+
+- PHP 8+ with PDO MySQL
+- MySQL (e.g. XAMPP, WAMP, or standalone MySQL)
+
+### Database setup
 
 ```bash
-# Python
-python -m http.server 8000
-
-# Node (npx)
-npx serve .
+mysql -u root -p < api/schema.sql
 ```
 
-Then visit http://localhost:8000
+Or in MySQL client, run the contents of `api/schema.sql` to create database `manavdeltal` and table `items`.
 
-## Links
+Edit `api/config/database.php` if your MySQL user/password/host differ (default: host=localhost, user=root, pass=empty, db=manavdeltal).
 
-- **Clinic:** [manavdental.com](https://manavdental.com)
-- **Address:** MM5W+R62, Damak 57217
-- **Phone:** 023-574973
+### Run the app
+
+**Terminal 1 – PHP API (port 8000):**
+
+```bash
+cd api
+php -S localhost:8000
+```
+
+**Terminal 2 – React dev server (port 3000):**
+
+```bash
+cd client
+npm install
+npm run dev
+```
+
+Open **http://localhost:3000**. The React app will proxy `/api/*` to the PHP backend.
+
+### Build for production
+
+```bash
+cd client
+npm run build
+```
+
+Output is in `client/dist/`. Point your web server at it and serve the PHP API from your existing PHP host (e.g. Apache with mod_php or PHP-FPM).
+
+---
+
+**Repo:** [github.com/iaminputalisadak-ops/manavdeltal](https://github.com/iaminputalisadak-ops/manavdeltal)
