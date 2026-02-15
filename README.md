@@ -12,28 +12,28 @@
 
 ---
 
-## 2. React app + PHP/MySQL backend
+## 2. Manav Dental Clinic – React website + PHP/MySQL
 
-- **Frontend:** `client/` – React (Vite) app
-- **Backend:** `api/` – PHP with MySQL
+Full multi-page dental clinic site: Home, About, Services, Doctors, Gallery, Testimonials, Contact, Book Appointment. React Router, PHP API, MySQL for appointments and contact form.
+
+- **Frontend:** `client/` – React (Vite) + React Router
+- **Backend:** `api/` – PHP (appointments, contacts, services, admin)
 
 ### Prerequisites
 
 - Node.js 18+
 - PHP 8+ with PDO MySQL
-- MySQL (e.g. XAMPP, WAMP, or standalone MySQL)
+- MySQL (XAMPP, WAMP, or standalone)
 
-### Database setup
+### Database setup (dental site)
 
 ```bash
-mysql -u root -p < api/schema.sql
+mysql -u root -p < api/schema_dental.sql
 ```
 
-Or in MySQL client, run the contents of `api/schema.sql` to create database `manavdeltal` and table `items`.
+This creates `manav_dental_db` and tables: `appointments`, `contacts`, `services`. Edit `api/config/database_dental.php` if your MySQL user/password/host differ.
 
-Edit `api/config/database.php` if your MySQL user/password/host differ (default: host=localhost, user=root, pass=empty, db=manavdeltal).
-
-### Run the app
+### Run the site
 
 **Terminal 1 – PHP API (port 8000):**
 
@@ -42,7 +42,7 @@ cd api
 php -S localhost:8000
 ```
 
-**Terminal 2 – React dev server (port 3000):**
+**Terminal 2 – React (port 3000):**
 
 ```bash
 cd client
@@ -50,7 +50,7 @@ npm install
 npm run dev
 ```
 
-Open **http://localhost:3000**. The React app will proxy `/api/*` to the PHP backend.
+Open **http://localhost:3000**. Use “Book Appointment” and “Contact” forms; data is stored in MySQL. Admin: `GET /api/admin_appointments.php` to list appointments (add auth in production).
 
 ### Build for production
 
@@ -59,7 +59,7 @@ cd client
 npm run build
 ```
 
-Output is in `client/dist/`. Point your web server at it and serve the PHP API from your existing PHP host (e.g. Apache with mod_php or PHP-FPM).
+Serve `client/dist/` and the `api/` folder from your host.
 
 ---
 

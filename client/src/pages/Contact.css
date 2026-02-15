@@ -1,0 +1,133 @@
+.contact-page {
+  padding: 3rem 0 4rem;
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+  .contact-layout {
+    grid-template-columns: 1fr 1.2fr;
+  }
+}
+
+.contact-info-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.contact-card {
+  background: var(--white);
+  padding: 1.25rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid #eee;
+}
+
+.contact-card-icon {
+  font-size: 1.5rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.contact-card h3 {
+  font-size: 1rem;
+  margin: 0 0 0.35rem;
+  color: var(--primary);
+}
+
+.contact-card p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.contact-card a {
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.contact-note {
+  font-size: 0.85rem !important;
+  margin-top: 0.5rem !important;
+}
+
+.contact-form-wrap h2,
+.contact-map-wrap h2 {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  margin: 0 0 1rem;
+}
+
+.contact-form {
+  background: var(--white);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.contact-form .form-row {
+  margin-bottom: 1rem;
+}
+
+.contact-form .form-row label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 10px 14px;
+  font-family: var(--font-body);
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.contact-form input.error,
+.contact-form textarea.error {
+  border-color: #dc2626;
+}
+
+.contact-form .form-error {
+  font-size: 0.85rem;
+  color: #dc2626;
+}
+
+.contact-map-wrap {
+  margin-top: 2rem;
+}
+
+.contact-map {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.contact-map-link {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.contact-page .toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 24px;
+  border-radius: var(--radius);
+  font-weight: 500;
+  z-index: 1000;
+}
+
+.toast-success { background: #059669; color: #fff; }
+.toast-error { background: #dc2626; color: #fff; }

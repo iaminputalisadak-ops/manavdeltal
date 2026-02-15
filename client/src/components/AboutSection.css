@@ -1,0 +1,64 @@
+.about-section {
+  padding: 4rem 0;
+  background: var(--white);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .about-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+}
+
+.about-image-wrap {
+  order: 1;
+}
+
+.about-image {
+  aspect-ratio: 4/3;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+  background-image: url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80');
+  background-size: cover;
+  background-position: center;
+}
+
+.about-content {
+  order: 2;
+}
+
+.about-lead {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin: 0 0 1rem;
+}
+
+.about-counters {
+  display: flex;
+  gap: 2rem;
+  margin: 1.5rem 0;
+}
+
+.about-counter {
+  text-align: left;
+}
+
+.about-counter-value {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.about-counter-label {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
